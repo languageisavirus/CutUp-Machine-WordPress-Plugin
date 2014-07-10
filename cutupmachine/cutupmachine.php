@@ -64,7 +64,7 @@ class CutUpMachine extends WP_Widget
     // WIDGET CODE GOES HERE
     echo "<script src=http://www.languageisavirus.com/cutupmachine.js></script>";
     echo "<h3 class='widget-title'><span>CutUp Machine</span></h3>";
-    echo "<ul><li>1. Type or paste some text into the field below.</li><li>2. Click Cut It Up.</li><li>3. Your text is mixed up a la Burroughs!</li></ul><form name='Tree'><input type='hidden' name='numPerLine' value='5'><textarea name='UserText' wrap='soft'></textarea><input type='button' value='Cut it Up!' name='Go' onClick='javascript:runlines();'><br /><a href='http://www.languageisavirus.com' target='_blank' style='font-family:ms sans serif;font-size:10px;'>LanguageIsAVirus.com</a></form>";
+    echo "<ul><li>1. Type or paste some text into the field below.</li><li>2. Click Cut It Up.</li><li>3. Your text is mixed up a la Burroughs!</li></ul><form name='Tree'><input type='hidden' name='numPerLine' value='5'><textarea name='UserText' wrap='soft'></textarea><input type='button' value='Cut it Up!' name='Go' onClick='javascript:runlines();'></form>";
 
     echo $after_widget;
   }
