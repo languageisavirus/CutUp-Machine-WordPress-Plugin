@@ -62,7 +62,7 @@ class CutUpMachine extends WP_Widget
       echo $before_title . $title . $after_title;;
  
     // WIDGET CODE GOES HERE
-    echo "<script src=cutupmachine.js></script>";
+    echo "<script src=/wp-content/plugins/cutupmachine/cutupmachine.js></script>";
     echo "<h3 class='widget-title'><span>CutUp Machine</span></h3>";
     echo "<ul><li>1. Type or paste some text into the field below.</li><li>2. Click Cut It Up.</li><li>3. Your text is mixed up a la Burroughs!</li></ul><form name='Tree'><input type='hidden' name='numPerLine' value='5'><textarea name='UserText' wrap='soft'></textarea><input type='button' value='Cut it Up!' name='Go' onClick='javascript:runlines();'></form>";
 
