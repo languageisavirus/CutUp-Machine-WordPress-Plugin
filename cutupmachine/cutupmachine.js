@@ -1,11 +1,11 @@
-function runlines()
+function cutupmachine()
 {
-	var Punctuation=new Array(" ","\"","â€œ","â€",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","Â¡","Â¢","Â£","Â¤","Â¥","Â¦","Â¨","Â°","Â±","Â¶","/","\\","â€“","â€”","Â¿","Â»","Â«","|","_","`","~");
+	var Punctuation=new Array(" ","\n","\t","\r","\"","â€œ","â€",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","Â¡","Â¢","Â£","Â¤","Â¥","Â¦","Â¨","Â°","Â±","Â¶","/","\\","â€“","â€”","Â¿","Â»","Â«","|","_","`","~");
 	var TextIn=new Array();	
-	var TextOut;
+	var TextDump=new Array();	
+	var TextOut = "";
 	numPunctuation = Punctuation.length;
-	onWord = 0;
-	numPerLine = document.Tree.numPerLine.value;
+	var onWord = 0;
 	UserText = document.Tree.UserText.value;
 	TextLength = UserText.length;
 	for (var n=0;n<TextLength;n++)
@@ -39,32 +39,17 @@ function runlines()
 		}
 	}
 	numWords = TextIn.length;
-	numLines = Math.floor(numWords/numPerLine) + 1;
 	
-	for (var n=0;n<numLines;n++)
+	for (n=0;n<numWords;n++)
 	{ 
 		if (n > 0)
 		{
 			TextOut = TextOut + " ";
 		}
-		for (var m=0;m<numPerLine;m++)
-		{
-			onWord = n + (numLines * m);
-			if (TextOut == null)
-			{
-				TextOut = TextIn[onWord];
-			}
-			else if (onWord < numWords)
-			{
-				if (m > 0)
-				{
-					TextOut = TextOut + " ";
-				}
-				TextOut = TextOut + TextIn[onWord];
-			}
-		}
+		onWord = Math.floor(Math.random() * (numWords - n));
+		TextOut = TextOut + TextIn[onWord];
+		TextDump = TextIn.splice(onWord,1);
 	}
-	
 	document.Tree.UserText.value=TextOut;
 	
 }
