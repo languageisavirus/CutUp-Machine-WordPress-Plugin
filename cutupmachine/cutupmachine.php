@@ -27,8 +27,10 @@ License: GPL2
 
 defined('ABSPATH') or die("No script kiddies please!");
 
+
 class CutUpMachine extends WP_Widget
 {
+
   function CutUpMachine()
   {
     $widget_ops = array('classname' => 'CutUpMachine', 'description' => 'Mixes up the words you enter, a la William S. Burroughs' );
@@ -60,11 +62,21 @@ class CutUpMachine extends WP_Widget
  
     if (!empty($title))
       echo $before_title . $title . $after_title;;
- 
+
     // WIDGET CODE GOES HERE
-    echo "<script src=./wp-content/plugins/cutupmachine/cutupmachine.js></script>";
+	function getcutupmachine()
+	{
+		wp_register_script( 'cutupmachine', plugins_url( 'cutupmachine.js' , __FILE__ ), array(), '', true );
+		wp_enqueue_script( 'cutupmachine' );
+	}
+
+	add_action( 'wp_enqueue_scripts', 'getcutupmachine' );
+	add_action( 'wp_register_script', 'getcutupmachine' );
+	
+	getcutupmachine();
+
     echo "<h3 class='widget-title'><span>CutUp Machine</span></h3>";
-    echo "<ul><li>1. Type or paste some text into the field below.</li><li>2. Click Cut It Up.</li><li>3. Your text is mixed up a la Burroughs!</li></ul><form name='Tree'><input type='hidden' name='numPerLine' value='5'><textarea name='UserText' wrap='soft'></textarea><input type='button' value='Cut it Up!' name='Go' onClick='javascript:runlines();'></form>";
+    echo "<ul><li>1. Type or paste some text into the field below.</li><li>2. Click Cut It Up.</li><li>3. Your text is mixed up a la Burroughs!</li></ul><form name='Tree'><input type='hidden' name='numPerLine' value='5'><textarea name='UserText' wrap='soft'></textarea><input type='button' value='Cut it Up!' name='Go' onClick='javascript:cutupmachine();'></form>";
 
     echo $after_widget;
   }
