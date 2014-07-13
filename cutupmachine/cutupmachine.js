@@ -1,22 +1,43 @@
 function cutupmachine()
 {
-	var Punctuation=new Array(" ","\n","\t","\r","\"","â€œ","â€",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","Â¡","Â¢","Â£","Â¤","Â¥","Â¦","Â¨","Â°","Â±","Â¶","/","\\","â€“","â€”","Â¿","Â»","Â«","|","_","`","~");
-	var TextIn=new Array();	
-	var TextDump=new Array();	
-	var TextOut = "";
-	numPunctuation = Punctuation.length;
+	document.Tree.UserText.value=ArrayToCutup(StringToArray(document.Tree.UserText.value));
+}
+
+function ArrayToCutup(theArray)
+{
+	var theCutup = "";
+	var TextDump = new Array();
+	var onWord = 0;	
+	var numWords = theArray.length;
+	for (n=0;n<numWords;n++)
+	{ 
+		if (n > 0)
+		{
+			theCutup = theCutup + " ";
+		}
+		onWord = Math.floor(Math.random() * (numWords - n));
+		theCutup = theCutup + theArray[onWord];
+		TextDump = theArray.splice(onWord,1);
+	}
+	return theCutup;
+}
+
+function StringToArray(theString)
+{
+	var Punctuation = new Array(" ","\n","\t","\r","\"","“","”",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","¡","¢","£","¤","¥","¦","¨","°","±","¶","/","\\","–","—","¿","»","«","|","_","`","~");
+	var theArray = new Array();	
 	var onWord = 0;
-	UserText = document.Tree.UserText.value;
-	TextLength = UserText.length;
+	var numPunctuation = Punctuation.length;
+	var TextLength = theString.length;
 	for (var n=0;n<TextLength;n++)
 	{
-		thisChar = UserText.charAt(n);
+		thisChar = theString.charAt(n);
 		isValidChar = true;
 		for (var m=0;m<numPunctuation;m++)
 		{
 			if (thisChar == Punctuation[m])
 			{
-				if (TextIn[onWord] == null)
+				if (theArray[onWord] == null)
 				{
 				}
 				else
@@ -26,30 +47,17 @@ function cutupmachine()
 				isValidChar = false;
 			}
 		}
-		if(isValidChar)
+		if (isValidChar)
 		{
-			if (TextIn[onWord] == null)
+			if (theArray[onWord] == null)
 			{
-				TextIn[onWord] = thisChar;
+				theArray[onWord] = thisChar;
 			}
 			else
 			{
-				TextIn[onWord] = TextIn[onWord] + thisChar;
+				theArray[onWord] = theArray[onWord] + thisChar;
 			}
 		}
 	}
-	numWords = TextIn.length;
-	
-	for (n=0;n<numWords;n++)
-	{ 
-		if (n > 0)
-		{
-			TextOut = TextOut + " ";
-		}
-		onWord = Math.floor(Math.random() * (numWords - n));
-		TextOut = TextOut + TextIn[onWord];
-		TextDump = TextIn.splice(onWord,1);
-	}
-	document.Tree.UserText.value=TextOut;
-	
+ 	return theArray;
 }
