@@ -1,15 +1,16 @@
-=== CutUp Machine ===
+=== Cut-Up Machine ===
 Contributors: languageisavirus
 Tags: cutup, cut up, text manipulation, william s burroughs, burroughs, dada, creative writing, widget
-Requires at least: 1
-Tested up to: 1
+Requires at least: 4.5
+Tested up to: 6.2.2
+Requires PHP: 8.0
 Stable tag: trunk
-License: GPL2
-License URI: http://www.languageisavirus.com/cutupmachine.html
-Author: Lake e Lou, webmaster@languageisavirus.com
+License: GPL3
+License URI: https://www.languageisavirus.com/cutupmachine.php
+Author: Lake, webmaster@languageisavirus.com
 
 == Description ==
-The CutUp Machine mixes up the words you enter in a form, a la William S. Burroughs and the Dadaists. This creates new and often surprising juxtapositions of words that can inspire creativity.
+The Cut-Up Machine mixes up the words you enter in a form, a la William S. Burroughs and the Dadaists. This creates new and often surprising juxtapositions of words that can inspire creativity.
 
     1. Type or paste some text into the field below.
     2. Click "Cut It Up".
@@ -24,19 +25,29 @@ The CutUp Machine mixes up the words you enter in a form, a la William S. Burrou
 
 == Installation ==
 Upload the cutupmachine folder to your plugins directory.
-Activate Plugin: CutUp Machine. 
-Go to Appearance --> Widgets and drag the CutUp Machine widget to a sidebar.
+Activate Plugin: Cut-Up Machine. 
+Go to Appearance --> Widgets and drag the Cut-Up Machine widget to a sidebar.
+
+== Customize Appearance ==
+If you want to customize styles, the widget class is .cutupmachine, so you can customize any of these in your theme style.css:
+.cutupmachine h3
+.cutupmachine ul
+.cutupmachine li
+.cutupmachine form
+.cutupmachine textarea
+.cutupmachine button
+.cutupmachine label
+
 Done!
 
 
 == Frequently Asked Questions ==
 What are cut-ups?
-Read more about the history of the literary game of cut-ups on Wikipedia: http://en.wikipedia.org/wiki/Cut-up_technique
+Read more about the history of the literary game of cut-ups: https://www.languageisavirus.com/cutupmachine.php
 
 Nothing happens when I click Cut It Up!
 Make sure that JavaScript is enabled.
 
 
-
 == Screenshots ==
-1. CutUp Machine widget in sidebar
+1. Cut-Up Machine widget in sidebar
