@@ -1,63 +1,50 @@
-function cutupmachine()
-{
-	document.Tree.UserText.value=ArrayToCutup(StringToArray(document.Tree.UserText.value));
-}
+var invalid_chars = ["\r","\n"," ","\"","“","”",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","¡","¢","£","¤","¥","¦","¨","°","±","¶","/","\\","–","—","¿","»","«","|","_","`","~","+","-"]; //these characters become word breaks
 
-function ArrayToCutup(theArray)
-{
-	var theCutup = "";
-	var TextDump = new Array();
-	var onWord = 0;	
-	var numWords = theArray.length;
-	for (n=0;n<numWords;n++)
-	{ 
-		if (n > 0)
-		{
-			theCutup = theCutup + " ";
-		}
-		onWord = Math.floor(Math.random() * (numWords - n));
-		theCutup = theCutup + theArray[onWord];
-		TextDump = theArray.splice(onWord,1);
-	}
-	return theCutup;
+function cut_it_up(){
+  var user_text = document.getElementById("text_in").value;
+  var text_out = "";
+  user_text = clean_text(user_text);
+  var word_list = user_text.split(" "); //put text into array
+  var first_word = true;
+  var random_word;
+  var wordCount = 0;
+  for (i=word_list.length;i>0;i--) { //backwards, because the array with be shortened with each loop.
+    random_word = Math.floor(Math.random() * i);
+    if (wordCount >= 10) {
+      text_out += "\n";
+      wordCount = 0;
+    }
+    if (!first_word) { //adds space if this is not the first word
+      text_out += " ";
+    }
+    text_out += word_list[random_word];
+    first_word = false;
+    wordCount++;
+    word_list.splice(random_word,1); //remove word just used from array.
+  }
+  document.getElementById("text_out").value = text_out;
 }
-
-function StringToArray(theString)
-{
-	var Punctuation = new Array(" ","\n","\t","\r","\"","“","”",",",".",";","!","@","#","$","%","^","*","(",")",":","[","{","}","]","¡","¢","£","¤","¥","¦","¨","°","±","¶","/","\\","–","—","¿","»","«","|","_","`","~");
-	var theArray = new Array();	
-	var onWord = 0;
-	var numPunctuation = Punctuation.length;
-	var TextLength = theString.length;
-	for (var n=0;n<TextLength;n++)
-	{
-		thisChar = theString.charAt(n);
-		isValidChar = true;
-		for (var m=0;m<numPunctuation;m++)
-		{
-			if (thisChar == Punctuation[m])
-			{
-				if (theArray[onWord] == null)
-				{
-				}
-				else
-				{
-					onWord++;
-				}
-				isValidChar = false;
-			}
+	
+function clean_text(text_in) {
+	//strip invalid characters from user text
+	var text_length = text_in.length;
+	var this_char = "";
+	var text_out= "";
+	var prev_char_invalid = false;
+	var first_valid_char = true;
+	for (i=0;i<text_length;i++){
+		this_char = text_in.charAt(i);
+		if (invalid_chars.includes(this_char)){
+			prev_char_invalid = true;
 		}
-		if (isValidChar)
-		{
-			if (theArray[onWord] == null)
-			{
-				theArray[onWord] = thisChar;
+		else {
+			if (prev_char_invalid && !first_valid_char) { //if this not the first valid character, add delimiter.
+				text_out += " ";
 			}
-			else
-			{
-				theArray[onWord] = theArray[onWord] + thisChar;
-			}
+			text_out += this_char;
+			first_valid_char = false;
+			prev_char_invalid = false;
 		}
 	}
- 	return theArray;
+	return text_out;
 }
